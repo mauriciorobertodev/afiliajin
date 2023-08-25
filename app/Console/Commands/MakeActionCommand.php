@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeActionCommand extends GeneratorCommand
+final class MakeActionCommand extends GeneratorCommand
 {
     protected $signature = 'make:action { name }';
 
