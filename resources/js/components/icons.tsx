@@ -1,6 +1,28 @@
-import { LayoutDashboard, LucideIcon, Settings, User, GalleryVerticalEnd, AppWindow, Plus, Check, ArrowLeft, ArrowRight, ChevronLeft, Loader2, X, CheckCircle, Info, AlertTriangle, XOctagon } from "lucide-react"
+import {
+    LayoutDashboard,
+    LucideIcon,
+    Settings,
+    User,
+    GalleryVerticalEnd,
+    AppWindow,
+    Plus,
+    Check,
+    ArrowLeft,
+    ArrowRight,
+    ChevronLeft,
+    Loader2,
+    X,
+    CheckCircle,
+    Info,
+    AlertTriangle,
+    XOctagon,
+    MoreVertical,
+    Trash2,
+    ChevronRight,
+    Search,
+} from "lucide-react";
 
-export const Icons : { [key: string]: LucideIcon } = {
+export const Icons: { [key: string]: LucideIcon } = {
     settings: Settings,
     user: User,
     dashboard: LayoutDashboard,
@@ -15,7 +37,10 @@ export const Icons : { [key: string]: LucideIcon } = {
     arrowLeft: ArrowLeft,
     arrowRight: ArrowRight,
     chevronLeft: ChevronLeft,
+    chevronRight: ChevronRight,
     spinner: Loader2,
-    x: X
-}
-
+    trash: Trash2,
+    x: X,
+    moreVertical: MoreVertical,
+    search: Search,
+};
