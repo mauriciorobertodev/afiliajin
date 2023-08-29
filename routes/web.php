@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/paginas', [PageController::class, 'index'])->name('page.index');
+    Route::get('/paginas/nova', [PageController::class, 'create'])->name('page.create');
+    Route::post('/paginas/nova', [PageController::class, 'store'])->name('page.store');
+    Route::delete('/paginas/excluir/{id}', [PageController::class, 'destroy'])->name('page.destroy');
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('/{slug}', [PageController::class, 'show'])->name('page.show');
