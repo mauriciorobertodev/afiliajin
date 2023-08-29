@@ -169,6 +169,8 @@ return [
     */
 
     'attributes' => [
+        'cloned_from'           => 'página para clonar',
+        'slug'                  => 'slug',
         'address'               => 'endereço',
         'age'                   => 'idade',
         'body'                  => 'conteúdo',
