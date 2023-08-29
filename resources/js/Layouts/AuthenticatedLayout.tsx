@@ -21,9 +21,10 @@ export default function Authenticated({
                     items={[
                         { icon: "dashboard", title: "Dashboard", routeName: "dashboard" },
                         { icon: "user", title: "Perfil", routeName: "profile.edit" },
+                        { icon: "page", title: "Páginas", routeName: "page.index" },
                     ]}
                 />
-                <main className="py-6 px-4 md:px-8 min-h-screen overflow-y-auto">{children}</main>
+                <main className="py-6 px-4 md:px-8 max-h-screen overflow-y-auto">{children}</main>
             </div>
             <Toaster position="bottom-right" reverseOrder={false} />
         </div>
