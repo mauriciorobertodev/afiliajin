@@ -12,12 +12,12 @@ final class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        \App\Models\User::factory()->create([
+        $testUser = \App\Models\User::factory()->create([
             'name'     => 'Test User',
             'email'    => 'test@test.com',
             'password' => \Illuminate\Support\Facades\Hash::make('123'),
         ]);
+
+        \App\Models\Page::factory(10)->create(['user_id' => $testUser->id]);
     }
 }
