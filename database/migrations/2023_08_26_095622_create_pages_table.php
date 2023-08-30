@@ -16,8 +16,9 @@ return new class() extends Migration {
             $table->string('name');
             $table->string('cloned_from');
             $table->string('slug')->unique();
+            $table->boolean('whatsapp_show')->default(false);
             $table->string('whatsapp_number')->nullable();
-            $table->string('whatsapp_message')->nullable();
+            $table->text('whatsapp_message')->nullable();
             $table->boolean('more_18')->default(false);
             $table->foreignIdFor(User::class);
             $table->timestamps();

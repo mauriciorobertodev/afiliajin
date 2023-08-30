@@ -23,6 +23,7 @@ final class PageFactory extends Factory
             'user_id'          => User::factory(),
             'cloned_from'      => fake()->url(),
             'created_at'       => fake()->dateTimeBetween('-1 weeks'),
+            'whatsapp_show'    => fake()->boolean(),
             'whatsapp_number'  => fake()->phoneNumber(),
             'whatsapp_message' => fake()->text(),
         ];

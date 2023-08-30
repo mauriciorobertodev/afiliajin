@@ -15,8 +15,13 @@ final class Page extends Model
         'cloned_from',
         'slug',
         'user_id',
+        'whatsapp_show',
         'whatsapp_number',
         'whatsapp_message',
+    ];
+
+    protected $casts = [
+        'whatsapp_show' => 'boolean',
     ];
 
     public function getCreatedAtAttribute($value)
