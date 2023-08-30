@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PageStoreRequest extends FormRequest
+final class PageStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class PageStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-            'cloned_from' => ['required', 'active_url', 'max:255'],
-            'slug' => ['required', 'string', 'min:3', 'max:255']
+            'name'             => ['required', 'string', 'min:3', 'max:255'],
+            'cloned_from'      => ['required', 'active_url', 'max:255'],
+            'slug'             => ['required', 'string', 'min:3', 'max:255'],
         ];
     }
 }
