@@ -169,6 +169,8 @@ return [
     */
 
     'attributes' => [
+        'whatsapp_number'       => 'número de whatsapp',
+        'whatsapp_show'         => 'mostrar botão de whastapp',
         'cloned_from'           => 'página para clonar',
         'slug'                  => 'slug',
         'address'               => 'endereço',
