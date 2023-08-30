@@ -40,7 +40,9 @@ final class PageController extends Controller
 
     public function store(PageStoreRequest $request)
     {
-        $request->replace(['cloned_from' => parse_url($request->cloned_from, PHP_URL_HOST) . '/' . trim(parse_url($request->cloned_from, PHP_URL_PATH), '/') . '/']);
+        $host = trim(parse_url($request->cloned_from, PHP_URL_HOST), '/');
+        $path = trim(parse_url($request->cloned_from, PHP_URL_PATH), '/');
+        $request->merge(['cloned_from' => $host . '/' . ($path ? $path . '/' : '')]);
 
         $content = Clone\GetPageContent::run($request->cloned_from);
 
@@ -60,7 +62,7 @@ final class PageController extends Controller
             return redirect()->back()->with('notification', ['type' => 'error', 'text' => __('app.errors.clone_requestbase_fail')]);
         }
 
-        return to_route('page.index')->with('notification', ['type' => 'success', 'text' => __('app.success.cloned')]);
+        return to_route('page.index')->with('notification', ['type' => 'success', 'text' => __('app.success.page.cloned')]);
     }
 
     public function show(string $slug)
@@ -74,13 +76,13 @@ final class PageController extends Controller
 
     public function destroy(string $id)
     {
-        $page = Page::query()->find($id);
+        $page = Page::query()->where('user_id', Auth::user()->id)->find($id, ['user_id', 'id', 'slug']);
 
-        if ( ! $page) {
-            return back()->with('notification', ['type' => 'warning', 'text' => 'Essa página não existe']);
+        if ($page) {
+            Storage::disk('pages')->delete($page->slug . '.blade.php');
+            $page->delete();
         }
 
-        Storage::disk('pages')->delete($page->slug . '.blade.php');
-        $page->delete();
+        return back()->with('notification', ['type' => 'success', 'text' => __('app.success.page.destroyed')]);
     }
 }
