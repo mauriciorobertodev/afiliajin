@@ -1,11 +1,13 @@
 <?php
 
+use App\Models\Page;
 use App\Models\User;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Testing\AssertableInertia as Assert;
 use function Pest\Laravel\actingAs;
+use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\get;
 
 test('Deve redirecionar para tela de login caso o usuário não esteja logado', function () {
@@ -13,7 +15,7 @@ test('Deve redirecionar para tela de login caso o usuário não esteja logado', 
         ->assertRedirectToRoute('login');
 });
 
-test('Deve retornar um erro caso os campos (name, slug, cloned_from) não sejam preenchidos', function () {
+test('Deve retornar um erro caso os campos (name, slug, cloned_from, whatsapp_show) não sejam preenchidos', function () {
     $user = User::factory()->createOne();
 
     actingAs($user)
@@ -100,9 +102,9 @@ test('Deve retornar um erro caso não seja possível clonar a página que o usu�
 
     $user = User::factory()->createOne();
     $data = [
-        'cloned_from' => 'https://test.com/test?batata=tomate',
-        'name'        => 'valid_name',
-        'slug'        => 'valid-slug',
+        'cloned_from'   => 'https://test.com/test?batata=tomate',
+        'name'          => 'valid_name',
+        'slug'          => 'valid-slug',
     ];
 
     Http::shouldReceive('get')->once()->with('test.com/test/')->andThrowExceptions([new ConnectionException()]);
@@ -126,9 +128,9 @@ test('Deve retornar um uma mensagem de erro caso não seja possível salvar a p�
 
     $user = User::factory()->createOne();
     $data = [
-        'cloned_from' => 'https://test.com',
-        'name'        => 'valid_name',
-        'slug'        => 'valid-slug',
+        'cloned_from'   => 'https://test.com',
+        'name'          => 'valid_name',
+        'slug'          => 'valid-slug',
     ];
 
     Storage::shouldReceive('disk')->once()->with('pages')->andReturnSelf();
@@ -149,16 +151,19 @@ test('Deve retornar um uma mensagem de erro caso não seja possível salvar a p�
         );
 });
 
-test('Deve retornar salvar a página clonada no storage e redirecionar o usuário para listagem com mensagem de sucesso', function () {
-    Storage::fake('pages');
+test('Deve salvar a página clonada no storage e redirecionar o usuário para listagem com mensagem de sucesso', function () {
+    $storage = Storage::fake('pages');
     Http::fake(['*' => Http::response('OK')]);
 
     $user = User::factory()->createOne();
     $data = [
-        'cloned_from' => 'https://test.com',
-        'name'        => 'valid_name',
-        'slug'        => 'valid-slug',
+        'cloned_from'      => 'https://test.com',
+        'name'             => 'valid_name',
+        'slug'             => 'valid-slug',
     ];
+
+    expect($storage->exists('valid-slug.blade.php'))->toBe(false);
+    assertDatabaseCount('pages', 0);
 
     actingAs($user)
         ->from(route('page.create'))
@@ -169,10 +174,17 @@ test('Deve retornar salvar a página clonada no storage e redirecionar o usuári
             fn (Assert $page) => $page
                 ->component('Page/Index')
                 ->where('auth.user', $user)
-                ->where('flash.notification', ['type' => 'success', 'text' => __('app.success.cloned')])
+                ->where('flash.notification', ['type' => 'success', 'text' => __('app.success.page.cloned')])
                 ->has('errors')
                 ->where('errors', [])
         );
 
-    Storage::disk('pages')->exists('valid-slug.blade.php');
+    expect( $storage->exists('valid-slug.blade.php'))->toBe(true);
+    assertDatabaseCount('pages', 1);
+
+    $page = Page::query()->first();
+
+    expect($page->cloned_from)->toBe('test.com/');
+    expect($page->name)->toBe($data['name']);
+    expect($page->slug)->toBe($data['slug']);
 });
