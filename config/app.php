@@ -185,13 +185,10 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
-    'head_top_tag_start'    => '<!-- AFILIAJIN TOP HEAD START -->',
-    'head_top_tag_end'      => '<!-- AFILIAJIN TOP HEAD END -->',
-    'head_bottom_tag_start' => '<!-- AFILIAJIN BOTTOM HEAD START -->',
-    'head_bottom_tag_end'   => '<!-- AFILIAJIN BOTTOM HEAD END -->',
-    'body_top_tag_start'    => '<!-- AFILIAJIN TOP BODY START -->',
-    'body_top_tag_end'      => '<!-- AFILIAJIN TOP BODY END -->',
-    'body_bottom_tag_start' => '<!-- AFILIAJIN BOTTOM BODY START -->',
-    'body_bottom_tag_end'   => '<!-- AFILIAJIN BOTTOM BODY END -->',
-
+    'whatsapp'        => '<!-- AFILIAJIN WHATSAPP -->',
+    'cookie'          => '<!-- AFILIAJIN COOKIE -->',
+    'head_top'        => '<!-- AFILIAJIN HEAD TOP -->',
+    'head_bottom'     => '<!-- AFILIAJIN HEAD BOTTOM -->',
+    'body_top'        => '<!-- AFILIAJIN BODY TOP -->',
+    'body_bottom'     => '<!-- AFILIAJIN BODY BOTTOM -->',
 ];
