@@ -45,4 +45,14 @@ export interface Page {
     slug: string;
     updated_at: string;
     user_id: number;
+    more_18: boolean;
+    whatsapp_show: boolean;
+    whatsapp_number?: string;
+    whatsapp_message?: string;
+    file: string;
+    cookie?: string;
+    head_top: string;
+    head_bottom: string;
+    body_top: string;
+    body_bottom: string;
 }
