@@ -20,6 +20,14 @@ import {
     Trash2,
     ChevronRight,
     Search,
+    Expand,
+    Minimize,
+    ArrowRightLeft,
+    Image,
+    Play,
+    Link,
+    ShoppingCart,
+    ExternalLink,
 } from "lucide-react";
 
 export const Icons: { [key: string]: LucideIcon } = {
@@ -43,4 +51,12 @@ export const Icons: { [key: string]: LucideIcon } = {
     x: X,
     moreVertical: MoreVertical,
     search: Search,
+    expand: Expand,
+    minimize: Minimize,
+    arrowRightLeft: ArrowRightLeft,
+    image: Image,
+    play: Play,
+    link: Link,
+    cart: ShoppingCart,
+    external: ExternalLink,
 };
