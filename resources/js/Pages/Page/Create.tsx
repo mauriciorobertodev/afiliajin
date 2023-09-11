@@ -16,14 +16,14 @@ export default function Index({ auth, flash }: PageProps) {
 
     return (
         <AuthenticatedLayout user={auth.user} notification={flash.notification}>
-            <Link href={route("page.index")}>
-                <Button variant="outline" className="mb-4">
-                    <Icons.chevronLeft className="mr-2 h-4 w-4" />
-                    Voltar
-                </Button>
-            </Link>
-
-            <Header heading="Nova página" text="Preencha todos os campos e clique em salvar." />
+            <Header heading="Nova página" text="Preencha todos os campos e clique em salvar.">
+                <Link href={route("page.index")}>
+                    <Button variant="outline" className="mb-4">
+                        <Icons.chevronLeft className="mr-2 h-4 w-4" />
+                        Voltar
+                    </Button>
+                </Link>
+            </Header>
 
             <Form onSubmit={() => post(route("page.store"))}>
                 <FormField
