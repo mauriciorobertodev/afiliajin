@@ -17,7 +17,7 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from "../ui/alert-dialog";
-import { router } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 
 interface PageItemActionsProps {
     pageId: number;
@@ -35,19 +35,9 @@ export function PageItemActions({ pageId }: PageItemActionsProps) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                     <DropdownMenuItem>
-                        <a href={`#`} className="flex w-full">
+                        <Link href={route("page.edit", { id: pageId })} className="flex w-full">
                             Editar
-                        </a>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                        <a href={`#`} className="flex w-full">
-                            Editar links
-                        </a>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                        <a href={`#`} className="flex w-full">
-                            Editar texto
-                        </a>
+                        </Link>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
