@@ -131,7 +131,7 @@ final class PageController extends Controller
         $content = FormatPageContent::run($request->cloned_from, $content);
 
         $uuid   = Uuid::uuid4();
-        $stored = Clone\StorePageContent::run($uuid, $content);
+        $stored = Storage::disk('pages')->put($uuid . '.html', $content);
 
         if ( ! $stored) {
             return redirect()->back()->with('notification', ['type' => 'error', 'text' => __('app.errors.clone_storage_fail')]);
@@ -160,6 +160,18 @@ final class PageController extends Controller
         }
 
         abort(Response::HTTP_NOT_FOUND);
+
+    }
+
+    public function presell(Request $request, string $slug)
+    {
+        if (env('APP_DEBUG')) {
+            \Barryvdh\Debugbar\Facades\Debugbar::disable();
+        }
+
+        $page     = Page::query()->where('slug', $slug)->firstOrFail(['name', 'slug', 'more_18']);
+
+        return view($page->more_18 ? 'presell_18' : 'presell', compact('page'));
 
     }
 
