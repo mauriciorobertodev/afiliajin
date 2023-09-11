@@ -26,6 +26,7 @@ final class PageFactory extends Factory
             'whatsapp_show'    => fake()->boolean(),
             'whatsapp_number'  => fake()->phoneNumber(),
             'whatsapp_message' => fake()->text(),
+            'file'             => 'test',
         ];
     }
 }

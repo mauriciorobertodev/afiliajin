@@ -11,17 +11,25 @@ final class Page extends Model
     use HasFactory;
 
     protected $fillable = [
+        'file',
         'name',
-        'cloned_from',
         'slug',
         'user_id',
+        'more_18',
+        'cloned_from',
         'whatsapp_show',
         'whatsapp_number',
         'whatsapp_message',
+        'cookie',
+        'head_top',
+        'head_bottom',
+        'body_top',
+        'body_bottom',
     ];
 
     protected $casts = [
         'whatsapp_show' => 'boolean',
+        'more_18'       => 'boolean',
     ];
 
     public function getCreatedAtAttribute($value)

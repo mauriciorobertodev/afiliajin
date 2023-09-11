@@ -20,6 +20,12 @@ return new class() extends Migration {
             $table->string('whatsapp_number')->nullable();
             $table->text('whatsapp_message')->nullable();
             $table->boolean('more_18')->default(false);
+            $table->string('file');
+            $table->string('cookie')->nullable();
+            $table->string('head_top')->nullable();
+            $table->string('head_bottom')->nullable();
+            $table->string('body_top')->nullable();
+            $table->string('body_bottom')->nullable();
             $table->foreignIdFor(User::class);
             $table->timestamps();
         });
