@@ -36,6 +36,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/paginas', [PageController::class, 'index'])->name('page.index');
     Route::get('/paginas/nova', [PageController::class, 'create'])->name('page.create');
     Route::post('/paginas/nova', [PageController::class, 'store'])->name('page.store');
+    Route::get('/paginas/editar/{id}', [PageController::class, 'edit'])->name('page.edit');
+    Route::put('/paginas/editar/{id}', [PageController::class, 'update'])->name('page.update');
+    Route::put('/paginas/editar/links/{id}', [PageController::class, 'updateLinks'])->name('page.update.links');
+    Route::put('/paginas/editar/body/{id}', [PageController::class, 'updateBody'])->name('page.update.body');
     Route::delete('/paginas/excluir/{id}', [PageController::class, 'destroy'])->name('page.destroy');
 });
 
