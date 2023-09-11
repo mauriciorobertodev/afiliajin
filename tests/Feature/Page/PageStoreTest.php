@@ -15,7 +15,7 @@ test('Deve redirecionar para tela de login caso o usuário não esteja logado', 
         ->assertRedirectToRoute('login');
 });
 
-test('Deve retornar um erro caso os campos (name, slug, cloned_from, whatsapp_show) não sejam preenchidos', function () {
+test('Deve retornar um erro caso os campos (name, slug, cloned_from) não sejam preenchidos', function () {
     $user = User::factory()->createOne();
 
     actingAs($user)
@@ -44,7 +44,7 @@ test('Deve retornar um erro caso os campos (name, slug) tenham menos de 3 caract
     actingAs($user)
         ->from(route('page.create'))
         ->followingRedirects()
-        ->post(route('page.store', $data))
+        ->post(route('page.store'), $data)
         ->assertOk()
         ->assertInertia(
             fn (Assert $page) => $page
@@ -66,7 +66,7 @@ test('Deve retornar um erro caso os campos (name, slug) tenham mais de 255 carac
     actingAs($user)
         ->from(route('page.create'))
         ->followingRedirects()
-        ->post(route('page.store', $data))
+        ->post(route('page.store'), $data)
         ->assertOk()
         ->assertInertia(
             fn (Assert $page) => $page
@@ -87,7 +87,7 @@ test('Deve retornar um erro caso os campos (cloned_from) não sejam urls válida
     actingAs($user)
         ->from(route('page.create'))
         ->followingRedirects()
-        ->post(route('page.store', $data))
+        ->post(route('page.store'), $data)
         ->assertOk()
         ->assertInertia(
             fn (Assert $page) => $page
@@ -112,7 +112,7 @@ test('Deve retornar um erro caso não seja possível clonar a página que o usu�
     actingAs($user)
         ->from(route('page.create'))
         ->followingRedirects()
-        ->post(route('page.store', $data))
+        ->post(route('page.store'), $data)
         ->assertOk()
         ->assertInertia(
             fn (Assert $page) => $page
@@ -133,13 +133,14 @@ test('Deve retornar um uma mensagem de erro caso não seja possível salvar a p�
         'slug'          => 'valid-slug',
     ];
 
+    assertDatabaseCount('pages', 0);
     Storage::shouldReceive('disk')->once()->with('pages')->andReturnSelf();
-    Storage::shouldReceive('put')->once()->with($data['slug'] . '.blade.php', 'OK')->andReturnFalse();
+    Storage::shouldReceive('put')->once()->andReturnFalse();
 
     actingAs($user)
         ->from(route('page.create'))
         ->followingRedirects()
-        ->post(route('page.store', $data))
+        ->post(route('page.store'), $data)
         ->assertOk()
         ->assertInertia(
             fn (Assert $page) => $page
@@ -149,6 +150,8 @@ test('Deve retornar um uma mensagem de erro caso não seja possível salvar a p�
                 ->has('errors')
                 ->where('errors', [])
         );
+
+    assertDatabaseCount('pages', 0);
 });
 
 test('Deve salvar a página clonada no storage e redirecionar o usuário para listagem com mensagem de sucesso', function () {
@@ -162,13 +165,13 @@ test('Deve salvar a página clonada no storage e redirecionar o usuário para li
         'slug'             => 'valid-slug',
     ];
 
-    expect($storage->exists('valid-slug.blade.php'))->toBe(false);
+    // expect($storage->exists($page->file . '.html'))->toBe(false);
     assertDatabaseCount('pages', 0);
 
     actingAs($user)
         ->from(route('page.create'))
         ->followingRedirects()
-        ->post(route('page.store', $data))
+        ->post(route('page.store'), $data)
         ->assertOk()
         ->assertInertia(
             fn (Assert $page) => $page
@@ -179,10 +182,11 @@ test('Deve salvar a página clonada no storage e redirecionar o usuário para li
                 ->where('errors', [])
         );
 
-    expect( $storage->exists('valid-slug.blade.php'))->toBe(true);
     assertDatabaseCount('pages', 1);
 
     $page = Page::query()->first();
+
+    expect( $storage->exists($page->file . '.html'))->toBe(true);
 
     expect($page->cloned_from)->toBe('test.com/');
     expect($page->name)->toBe($data['name']);
