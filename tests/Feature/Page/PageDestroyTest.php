@@ -2,7 +2,6 @@
 
 use App\Models\Page;
 use App\Models\User;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseCount;
@@ -16,31 +15,19 @@ test('Deve redirecionar para tela de login caso o usuário não esteja logado', 
 });
 
 test('Deve excluir uma página quanto no banco como no storage', function () {
-    $user = User::factory()->createOne();
-
     $storage = Storage::fake('pages');
-    Http::fake(['*' => Http::response('OK')]);
+    $user    = User::factory()->createOne();
+    $page    = Page::factory()->createOne(['user_id' => $user->id]);
+    $storage->put($page->file . '.html', '');
 
-    expect($storage->exists('valid-slug.blade.php'))->toBe(false);
-    assertDatabaseCount('pages', 0);
-
-    $data = [
-        'cloned_from'   => 'https://test.com',
-        'name'          => 'valid_name',
-        'slug'          => 'valid-slug',
-        'whatsapp_show' => false,
-    ];
-
-    actingAs($user)
-        ->post(route('page.store'), $data);
-
-    expect($storage->exists('valid-slug.blade.php'))->toBe(true);
     assertDatabaseCount('pages', 1);
-
-    $page = Page::query()->first();
+    expect($storage->exists($page->file . '.html'))->toBe(true);
 
     actingAs($user)
         ->delete(route('page.destroy', ['id' => $page->id]))
         ->assertSessionHasNoErrors()
         ->assertSessionHas('notification', ['type' => 'success', 'text' => __('app.success.page.destroyed')]);
+
+    assertDatabaseCount('pages', 0);
+    expect($storage->exists($page->file . '.html'))->toBe(false);
 });
