@@ -18,6 +18,7 @@ final class DatabaseSeeder extends Seeder
             'password' => \Illuminate\Support\Facades\Hash::make('123'),
         ]);
 
+        \App\Models\Page::factory()->createOne(['user_id' => $testUser->id, 'slug' => 'test']);
         \App\Models\Page::factory(10)->create(['user_id' => $testUser->id]);
     }
 }
