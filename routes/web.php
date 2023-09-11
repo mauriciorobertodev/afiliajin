@@ -45,4 +45,5 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
+Route::get('/p/{slug}', [PageController::class, 'presell'])->name('page.presell');
 Route::get('/{slug}', [PageController::class, 'show'])->name('page.show');
