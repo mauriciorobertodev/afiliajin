@@ -1,5 +1,5 @@
-import { PropsWithChildren, ReactNode } from "react";
 import { Label } from "./ui/label";
+import { ReactNode } from "react";
 import { Input, InputProps } from "./ui/input";
 import { cn } from "@/lib/utils";
 import { Switch } from "./ui/switch";
