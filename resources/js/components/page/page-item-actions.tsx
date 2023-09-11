@@ -18,12 +18,13 @@ import {
     AlertDialogTitle,
 } from "../ui/alert-dialog";
 import { Link, router } from "@inertiajs/react";
+import { Page } from "@/types";
 
 interface PageItemActionsProps {
-    pageId: number;
+    page: Pick<Page, "id" | "name" | "created_at" | "slug">;
 }
 
-export function PageItemActions({ pageId }: PageItemActionsProps) {
+export function PageItemActions({ page }: PageItemActionsProps) {
     const [showDeleteAlert, setShowDeleteAlert] = useState<boolean>(false);
     const [isDeleteLoading, setIsDeleteLoading] = useState<boolean>(false);
 
@@ -35,7 +36,12 @@ export function PageItemActions({ pageId }: PageItemActionsProps) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                     <DropdownMenuItem>
-                        <Link href={route("page.edit", { id: pageId })} className="flex w-full">
+                        <a target="__blank" href={route("page.presell", { slug: page.slug })} className="flex w-full">
+                            Presell
+                        </a>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                        <Link href={route("page.edit", { id: page.id })} className="flex w-full">
                             Editar
                         </Link>
                     </DropdownMenuItem>
@@ -59,7 +65,7 @@ export function PageItemActions({ pageId }: PageItemActionsProps) {
                         <AlertDialogAction
                             onClick={async (event) => {
                                 event.preventDefault();
-                                router.delete(route("page.destroy", { id: pageId }), {
+                                router.delete(route("page.destroy", { id: page.id }), {
                                     onStart: () => {
                                         setIsDeleteLoading(true);
                                     },

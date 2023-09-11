@@ -14,7 +14,7 @@ export function PageItem({ page }: PageItemProps) {
                 </a>
                 <p className="text-sm text-muted-foreground">{page.created_at}</p>
             </div>
-            <PageItemActions pageId={page.id} />
+            <PageItemActions page={page} />
         </div>
     );
 }
