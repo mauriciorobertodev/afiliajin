@@ -5,12 +5,14 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { useForm } from "@inertiajs/react";
 import { Transition } from "@headlessui/react";
+import { FormField } from "@/components/form";
+import { Button } from "@/components/ui/button";
 
 export default function UpdatePasswordForm({ className = "" }: { className?: string }) {
     const passwordInput = useRef<HTMLInputElement>();
     const currentPasswordInput = useRef<HTMLInputElement>();
 
-    const { data, setData, errors, put, reset, processing, recentlySuccessful } = useForm({
+    const { data, setData, errors, put, reset, processing, recentlySuccessful, clearErrors } = useForm({
         current_password: "",
         password: "",
         password_confirmation: "",
@@ -22,91 +24,59 @@ export default function UpdatePasswordForm({ className = "" }: { className?: str
         put(route("password.update"), {
             preserveScroll: true,
             onSuccess: () => reset(),
-            onError: (errors) => {
-                if (errors.password) {
-                    reset("password", "password_confirmation");
-                    passwordInput.current?.focus();
-                }
-
-                if (errors.current_password) {
-                    reset("current_password");
-                    currentPasswordInput.current?.focus();
-                }
-            },
+            onError: (errors) => {},
         });
     };
 
     return (
-        <section className={className}>
+        <section className={`mt-6 ${className}`}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Update Password</h2>
-
+                <h2 className="text-lg font-medium text-gray-900">Atualizar Senha</h2>
                 <p className="mt-1 text-sm text-gray-600">
-                    Ensure your account is using a long, random password to stay secure.
+                    Certifique-se de que sua conta esteja usando uma senha longa e aleatória para permanecer segura.
                 </p>
             </header>
 
-            <form onSubmit={updatePassword} className="mt-6 space-y-6">
-                <div>
-                    <InputLabel htmlFor="current_password" value="Current Password" />
+            <form onSubmit={updatePassword} className="mt-6">
+                <FormField
+                    name="current_password"
+                    label="Senha atual"
+                    error={errors.current_password}
+                    value={data.current_password}
+                    onChange={(e) => setData("current_password", e.target.value)}
+                    onFocus={(e) => clearErrors("current_password")}
+                    disabled={processing}
+                    type="password"
+                    autoComplete="current-password"
+                    autoFocus
+                    required
+                />
+                <FormField
+                    name="password"
+                    label="Nova senha"
+                    error={errors.password}
+                    value={data.password}
+                    onChange={(e) => setData("password", e.target.value)}
+                    onFocus={(e) => clearErrors("password")}
+                    disabled={processing}
+                    type="password"
+                    autoComplete="new-password"
+                    required
+                />
+                <FormField
+                    name="password_confirmation"
+                    label="Nova senha"
+                    error={errors.password_confirmation}
+                    value={data.password_confirmation}
+                    onChange={(e) => setData("password_confirmation", e.target.value)}
+                    onFocus={(e) => clearErrors("password_confirmation")}
+                    disabled={processing}
+                    type="password"
+                    autoComplete="new-password"
+                    required
+                />
 
-                    <TextInput
-                        id="current_password"
-                        ref={currentPasswordInput}
-                        value={data.current_password}
-                        onChange={(e) => setData("current_password", e.target.value)}
-                        type="password"
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                    />
-
-                    <InputError message={errors.current_password} className="mt-2" />
-                </div>
-
-                <div>
-                    <InputLabel htmlFor="password" value="New Password" />
-
-                    <TextInput
-                        id="password"
-                        ref={passwordInput}
-                        value={data.password}
-                        onChange={(e) => setData("password", e.target.value)}
-                        type="password"
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div>
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
-
-                    <TextInput
-                        id="password_confirmation"
-                        value={data.password_confirmation}
-                        onChange={(e) => setData("password_confirmation", e.target.value)}
-                        type="password"
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                    />
-
-                    <InputError message={errors.password_confirmation} className="mt-2" />
-                </div>
-
-                <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
-
-                    <Transition
-                        show={recentlySuccessful}
-                        enter="transition ease-in-out"
-                        enterFrom="opacity-0"
-                        leave="transition ease-in-out"
-                        leaveTo="opacity-0"
-                    >
-                        <p className="text-sm text-gray-600">Saved.</p>
-                    </Transition>
-                </div>
+                <Button disabled={processing}>Salvar</Button>
             </form>
         </section>
     );

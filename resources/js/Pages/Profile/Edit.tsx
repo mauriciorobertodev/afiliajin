@@ -5,6 +5,7 @@ import UpdateProfileInformationForm from "./Partials/UpdateProfileInformationFor
 import { Head } from "@inertiajs/react";
 import { PageProps } from "@/types";
 import { Header } from "@/components/header";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Edit({
     auth,
@@ -14,26 +15,25 @@ export default function Edit({
 }: PageProps<{ mustVerifyEmail: boolean; status?: string }>) {
     return (
         <AuthenticatedLayout user={auth.user} notification={flash.notification}>
-            <Header heading="Perfil" text="Gerencie as configurações da conta." />
+            <div className="grid grid-rows-[min-content_1fr] h-full">
+                <Header heading="Perfil" text="Gerencie as configurações da conta." />
 
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                        <UpdateProfileInformationForm
-                            mustVerifyEmail={mustVerifyEmail}
-                            status={status}
-                            className="max-w-xl"
-                        />
-                    </div>
-
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                        <UpdatePasswordForm className="max-w-xl" />
-                    </div>
-
-                    <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                        <DeleteUserForm className="max-w-xl" />
-                    </div>
-                </div>
+                <Tabs defaultValue="info" className="h-full  grid grid-rows-[min-content_1fr]">
+                    <TabsList className="grid w-full grid-cols-3">
+                        <TabsTrigger value="info">Informações</TabsTrigger>
+                        <TabsTrigger value="password">Senha</TabsTrigger>
+                        <TabsTrigger value="account">Conta</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="info" className="py-6">
+                        <UpdateProfileInformationForm mustVerifyEmail={mustVerifyEmail} status={status} />
+                    </TabsContent>
+                    <TabsContent value="password">
+                        <UpdatePasswordForm />
+                    </TabsContent>
+                    <TabsContent value="account">
+                        <DeleteUserForm />
+                    </TabsContent>
+                </Tabs>
             </div>
         </AuthenticatedLayout>
     );
