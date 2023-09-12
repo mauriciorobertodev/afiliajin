@@ -32,7 +32,7 @@ interface FormFieldProps extends InputProps {
 }
 
 export function FormField(props: FormFieldProps) {
-    const { label, type, name, placeholder, description, error, value, onChange, onFocus } = props;
+    const { label, name, description, error } = props;
     return (
         <div className="space-y-2 min-h-[100px]">
             {label && <Label htmlFor={name}>{label}</Label>}
