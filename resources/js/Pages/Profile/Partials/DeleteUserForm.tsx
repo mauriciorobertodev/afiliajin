@@ -1,13 +1,15 @@
 import { useRef, useState, FormEventHandler } from "react";
-import DangerButton from "@/Components/DangerButton";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import Modal from "@/Components/Modal";
-import SecondaryButton from "@/Components/SecondaryButton";
-import TextInput from "@/Components/TextInput";
 import { useForm } from "@inertiajs/react";
 import { Button } from "@/components/ui/button";
 import { FormField } from "@/components/form";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function DeleteUserForm({ className = "" }: { className?: string }) {
     const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
@@ -56,47 +58,47 @@ export default function DeleteUserForm({ className = "" }: { className?: string 
                 </p>
             </header>
 
-            <Button variant="destructive" onClick={confirmUserDeletion}>
-                Excluir conta
-            </Button>
-
-            <Modal show={confirmingUserDeletion} onClose={closeModal}>
-                <form onSubmit={deleteUser} className="p-6 space-y-4">
-                    <div>
-                        <h2 className="text-lg font-medium text-gray-900">
-                            Tem certeza de que deseja excluir sua conta?
-                        </h2>
-                        <p className="mt-1 text-sm text-gray-600">
+            <Dialog>
+                <DialogTrigger>
+                    <Button variant="destructive" onClick={confirmUserDeletion}>
+                        Excluir conta
+                    </Button>
+                </DialogTrigger>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Tem certeza de que deseja excluir sua conta?</DialogTitle>
+                        <DialogDescription>
                             Depois que sua conta for excluída, todos os seus recursos e dados serão excluídos
                             permanentemente. Por favor digite sua senha para confirmar que deseja excluir
                             permanentemente sua conta.
-                        </p>
-                    </div>
+                        </DialogDescription>
 
-                    <FormField
-                        name="password"
-                        label="Senha"
-                        error={errors.password}
-                        value={data.password}
-                        onChange={(e) => setData("password", e.target.value)}
-                        onFocus={(e) => clearErrors("password")}
-                        disabled={processing}
-                        type="password"
-                        autoComplete="new-password"
-                        required
-                    />
+                        <form onSubmit={deleteUser} className="space-y-4">
+                            <FormField
+                                name="password"
+                                label="Senha"
+                                error={errors.password}
+                                value={data.password}
+                                onChange={(e) => setData("password", e.target.value)}
+                                onFocus={(e) => clearErrors("password")}
+                                disabled={processing}
+                                type="password"
+                                autoComplete="new-password"
+                                required
+                            />
 
-                    <div className="mt-6 flex justify-end">
-                        <Button variant="outline" onClick={closeModal}>
-                            Cancelar
-                        </Button>
-
-                        <Button variant={"destructive"} className="ml-3" disabled={processing}>
-                            Excluir conta
-                        </Button>
-                    </div>
-                </form>
-            </Modal>
+                            <div className="mt-6 flex justify-end">
+                                <Button variant="outline" onClick={closeModal}>
+                                    Cancelar
+                                </Button>
+                                <Button variant={"destructive"} className="ml-3" disabled={processing}>
+                                    Excluir conta
+                                </Button>
+                            </div>
+                        </form>
+                    </DialogHeader>
+                </DialogContent>
+            </Dialog>
         </section>
     );
 }

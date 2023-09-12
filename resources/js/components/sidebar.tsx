@@ -1,4 +1,4 @@
-import ApplicationLogo from "@/Components/ApplicationLogo";
+import ApplicationLogo from "@/components/application-logo";
 import { ChevronFirst, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ReactNode, useState } from "react";
@@ -6,7 +6,7 @@ import { User } from "@/types";
 import { cn } from "@/lib/utils";
 import { Icons } from "./icons";
 
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 
 interface SidebarItem {
     routeName: string;
@@ -76,7 +76,7 @@ export default function Sidebar({ user, items }: SidebarProps) {
                             <p className="font-medium truncate ">{user.name}</p>
                             <p className="text-sm text-muted-foreground truncate">{user.email}</p>
                         </div>
-                        <Button variant="ghost" size="icon">
+                        <Button onClick={() => router.post(route("logout"))} variant="ghost" size="icon">
                             <LogOut />
                         </Button>
                     </div>

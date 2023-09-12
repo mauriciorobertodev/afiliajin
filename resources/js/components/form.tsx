@@ -34,7 +34,7 @@ interface FormFieldProps extends InputProps {
 export function FormField(props: FormFieldProps) {
     const { label, name, description, error } = props;
     return (
-        <div className="space-y-2 min-h-[100px]">
+        <div className="space-y-2 min-h-[90px]">
             {label && <Label htmlFor={name}>{label}</Label>}
             <Input
                 className={cn(error && "outline-none ring-2 ring-ring ring-offset-2 ring-red-500")}
