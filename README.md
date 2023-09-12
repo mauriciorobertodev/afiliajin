@@ -140,7 +140,7 @@ Contribuições são sempre bem vindas!
 
 ## :lock: License
 
-Licença MIT (MIT). Consulte o [arquivo de licença](https://github.com/mauriciorobertodev/afiliajin/LICENSE) para obter mais informações.
+Licença MIT (MIT). Consulte o [arquivo de licença](https://github.com/mauriciorobertodev/afiliajin/blob/main/LICENSE) para obter mais informações.
 
 <br>
 
