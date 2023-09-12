@@ -1,66 +1,173 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
+  <h1>Afiliajin</h1>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <p>
+    MVP de uma estrutura de afiliados
+    </a>
+  </p>
+
+<!-- Badges -->
+<p>
+<img alt="PRs welcome!" src="https://img.shields.io/static/v1?label=PRs&message=WELCOME&style=for-the-badge&color=3b82f6&labelColor=222222" />
+  <a href="https://github.com/mauriciorobertodev/afiliajin/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/mauriciorobertodev/afiliajin?color=3b82f6&label=CONTRIBUTORS&logo=3C424B&logoColor=3C424B&style=for-the-badge&labelColor=222222" alt="contributors" />
+  </a>
+  <a href="">
+    <img src="https://img.shields.io/github/last-commit/mauriciorobertodev/afiliajin?color=3b82f6&label=LAST UPDATE&logo=3C424B&logoColor=3C424B&style=for-the-badge&labelColor=222222" alt="last update" />
+  </a>
+  <a href="https://github.com/mauriciorobertodev/afiliajin/network/members">
+    <img src="https://img.shields.io/github/forks/mauriciorobertodev/afiliajin?color=3b82f6&label=FORKS&logo=3C424B&logoColor=3C424B&style=for-the-badge&labelColor=222222" alt="forks" />
+  </a>
+  <a href="https://github.com/mauriciorobertodev/afiliajin/stargazers">
+    <img src="https://img.shields.io/github/stars/mauriciorobertodev/afiliajin?color=3b82f6&label=STARS&logo=3C424B&logoColor=3C424B&style=for-the-badge&labelColor=222222" alt="stars" />
+  </a>
+  <a href="https://github.com/mauriciorobertodev/afiliajin/issues/">
+    <img src="https://img.shields.io/github/issues/mauriciorobertodev/afiliajin?color=3b82f6&label=ISSUESS&logo=3C424B&logoColor=3C424B&style=for-the-badge&labelColor=222222" alt="open issues" />
+  </a>
+  <a href="https://github.com/mauriciorobertodev/afiliajin/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/mauriciorobertodev/afiliajin.svg?color=3b82f6&label=LICENSE&logo=3C424B&logoColor=3C424B&style=for-the-badge&labelColor=222222" alt="license" />
+  </a>
 </p>
 
-## About Laravel
+![Alt text](https://raw.githubusercontent.com/mauriciorobertodev/afiliajin/main/screenshot.png)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+</div>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<br />
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<!-- About the Project -->
 
-## Learning Laravel
+## :star2: Sobre o projeto
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+O objetivo do projeto é ser um MVP de uma estrutura para afiliados, a principal função necessária é a clonagem de página de vendas que é o que o projeto se propõe a fazer. A página é clonada e formatada para uso na estrutura própria do afiliado.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+O projeto foi construído usando Laravel no backend, ReactJS no frontend, porém eu foi usado InertiaJS para fazer a comunicação entre eles, basicamente um monólito.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+A escolha do ReactJS foi para aprender como ele funciona pois não tinha tido nenhum contato com ele anteriormente, o laravel é php, a maioria dos afiliados são direcionados a hospedagens que só provem PHP, fora ser um ótimo framework. <br>
 
-## Laravel Sponsors
+<!-- Tech -->
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### :fire: O que foi usado
 
-### Premium Partners
+-   [Laravel 10](https://laravel.com/)
+-   [Laravel Breeze](https://laravel.com/docs/10.x/starter-kits)
+-   [React JS](https://react.dev/)
+-   [Inertia JS](https://inertiajs.com/)
+-   [Tailwind CSS](https://tailwindcss.com/)
+-   [shadcn/ui](https://ui.shadcn.com/)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+<br>
+<!-- Features -->
 
-## Contributing
+### :dart: Features
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+-   Clonar página de vendas.
+-   Colocar um botão de whatsapp na página
+-   Editar os links contidos na página
+-   Editar o texto diretamente na página
+-   Possibilidade de adicionar dados nas tags HEAD e BODY da página
+-   Cada página tem sua presell +18 ou não
 
-## Code of Conduct
+<br>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<!-- Usage -->
 
-## Security Vulnerabilities
+## :zap: Como usar
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Escolha o produto e copie o link da página de vendas.
+2. Abra a aplicação páginas > nova página, preencha os dados com o link copiado.
+3. Clique em salvar.
+4. A página aparecerá na lista de páginas clonada faça as alterações desejadas
 
-## License
+<br/>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<!-- Run Locally -->
+
+## :wrench: Desenvolvimento
+
+Clone o projeto
+
+```bash
+  git clone https://github.com/mauriciorobertodev/afiliajin.git
+```
+
+Entre na pasta do projeto
+
+```bash
+  cd afiliajin
+```
+
+Instale as dependências
+
+```bash
+  composer install && npm install
+```
+
+Rode o modo de desenvolvimento
+
+```bash
+  php artisan serve
+```
+
+```bash
+  npm run dev
+```
+
+Eu uso o Laravel Sail, [aqui](https://laravel.com/docs/10.x/sail#installing-composer-dependencies-for-existing-projects) você verá como executa-lo no projeto. <br>
+
+<!-- Contributing -->
+
+## :wave: Contribuindo
+
+Contribuições são sempre bem vindas!
+
+1. Faça o _fork_ do projeto (<https://github.com/mauriciorobertodev/afiliajin/fork>)
+2. Crie uma _branch_ para sua modificação (`git checkout -b meu-novo-recurso`)
+3. Faça o _commit_ (`git commit -am 'Adicionando um novo recurso...'`)
+4. _Push_ (`git push origin meu-novo-recurso`)
+5. Crie um novo _Pull Request_
+
+</br>
+
+<a href="https://github.com/mauriciorobertodev/afiliajin/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=mauriciorobertodev/afiliajin" />
+</a>
+</br>
+
+<br>
+
+<!-- License -->
+
+## :lock: License
+
+Licença MIT (MIT). Consulte o [arquivo de licença](https://github.com/mauriciorobertodev/afiliajin/LICENSE) para obter mais informações.
+
+<br>
+
+<!-- Contact -->
+
+## :handshake: Contato
+
+Mauricio Roberto - mauricio.roberto.dev@gmail.com
+
+Link do projeto: [https://github.com/mauriciorobertodev/afiliajin](https://github.com/mauriciorobertodev/afiliajin)
+
+<br>
+
+<!-- Acknowledgments -->
+
+## :gem: Créditos/Reconhecimento
+
+-   [Shields.io](https://shields.io/)
+-   [Awesome Readme Template](https://github.com/Louis3797/awesome-readme-template)
+-   [Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md#travel--places)
+
+<br>
+
+<!-- References -->
+
+## :microscope: Referências
+
+-   [Laravel - Documentação](https://laravel.com/docs/10.x)
+-   [IntertiaJS - Documentação](https://inertiajs.com/)
+-   [ReactJS - Documentação](https://react.dev/learn)
