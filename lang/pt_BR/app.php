@@ -14,6 +14,10 @@ return [
             'destroyed' => 'Página destruída',
             'updated'   => 'Página atualizada',
         ],
+        'profile' => [
+            'updated'          => 'Perfil atualizado',
+            'password_updated' => 'Senha atualizada',
+        ],
     ],
     'validations' => [
         'whatsapp_number_required_if' => 'O número de whatsapp é necessário.',
